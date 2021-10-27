@@ -121,8 +121,8 @@ leaflet() %>%
   
   addPolygons(
     data = zonas,
-    color = ~id_zona,
-    smoothFactor = 0.3,
+    color = "Blue",
+    smoothFactor = 0.5,
     label= ~id_zona,
     stroke = TRUE,
     weight = 2.0,
@@ -132,7 +132,7 @@ leaflet() %>%
   addPolygons(
     data = cuadrantes,
     color = "black",
-    smoothFactor = 0.5,
+    smoothFactor = 0.3,
     stroke = TRUE,
     weight = 1.0,
     group = "Cuadrantes"
@@ -151,7 +151,7 @@ leaflet() %>%
   
   addLayersControl(
     baseGroups = c("Carto_DB","Esri"),
-    overlayGroups = c("Altitud","Zonas delimitadas","cuadrantes", "Recursos patrimoniales"),
+    overlayGroups = c("Altitud","Zonas delimitadas","Cuadrantes", "Recursos patrimoniales"),
     options = layersControlOptions(collapsed = T)
   )
   
@@ -189,7 +189,7 @@ patrimonio_material %>%
   filter(!is.na(estado_conservacion))  %>%
   plot_ly(x = ~ estado_conservacion,
           y = ~ suma_registros,
-          type="bar",color = I("darkgreen")) %>%
+          type="bar",color = I("green")) %>%
   layout(title = "Estado de conservación de los recursos del patrimonio material",
          xaxis = list(title = "Estado de conservación"),
          yaxis = list(title = "Cantidad de recursos"))%>%
@@ -208,7 +208,7 @@ patrimonio_material %>%
   filter(!is.na(declaratoria))  %>%
   plot_ly(x = ~ declaratoria,
           y = ~ suma_registros,
-          type="bar",color = I("blue")) %>%
+          type="bar", color =I("Blue")  ) %>%
   layout(title = "Recursos con figura de protección legal",
          xaxis = list(title = "Declaratoria"),
          yaxis = list(title = "Cantidad de recursos"))%>%
