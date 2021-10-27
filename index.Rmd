@@ -98,7 +98,7 @@ Recursos
 Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Mapa
+### Mapa Centro histórico y primer ensanche de la Ciudad de Limón
 ```{r mapa, message = FALSE, warning = FALSE}
 # Conversión del objeto altitud a la clase RasterLayer
 altitud_rl <- raster::raster(altitud)
@@ -113,11 +113,11 @@ leaflet() %>%
   addProviderTiles(
     providers$Esri.WorldImagery, group = "Esri") %>%
   
-  #addRasterImage(
-   # altitud_rl, 
-    #opacity = 0.6,
-    #group = "Altitud"
-  #) %>% 
+  addRasterImage(
+    altitud_rl, 
+    opacity = 0.1,
+    group = "Altitud"
+  ) %>% 
   
   addPolygons(
     data = zonas,
@@ -161,7 +161,7 @@ leaflet() %>%
 Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Tabla Recursos del patrimonio material
+### Recursos del patrimonio material
 
 ```{r tabla patrimonio material, message = FALSE, warning = FALSE}
 patrimonio_material%>%
@@ -169,7 +169,7 @@ patrimonio_material%>%
   datatable(patrimonio_material, options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'), pageLength = 12))
 ```
 
-### Tabla recursos del patrimonio inmaterial
+### Recursos del patrimonio inmaterial
 
 ```{r patrimonio material, message = FALSE, warning = FALSE}
 patrimonio_inmaterial%>%
@@ -182,6 +182,8 @@ Gráficos
 
 Column {data-width=500}
 -----------------------------------------------------------------------
+### Distribución de recursos según estado de conservación
+
 ```{r grafico estado de conservacion, message=FALSE, warning=FALSE}
 patrimonio_material %>%
   group_by(estado_conservacion) %>%
@@ -201,6 +203,7 @@ patrimonio_material %>%
 
 Column {data-width=500}
 -----------------------------------------------------------------------
+### Situación legal de los recursos del patrimonio material 
 ```{r grafico declaracion patrimonial, message=FALSE, warning=FALSE}
 patrimonio_material %>%
   group_by(declaratoria) %>%
