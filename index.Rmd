@@ -183,7 +183,7 @@ Gráficos
 
 Column {data-width=500}
 -----------------------------------------------------------------------
-### Distribución de recursos según estado de conservación
+### Distribución de los recursos según estado de conservación
 
 ```{r grafico estado de conservacion, message=FALSE, warning=FALSE}
 patrimonio_material %>%
