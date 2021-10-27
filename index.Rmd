@@ -102,6 +102,13 @@ Column {data-width=500}
 ```{r mapa, message = FALSE, warning = FALSE}
 # Conversión del objeto altitud a la clase RasterLayer
 altitud_rl <- raster::raster(altitud)
+#color
+
+colores <- c('red', 'orange', 'yellow')
+
+c_zona <- levels(as.factor(zonas$id_zona))
+
+paleta <- colorFactor(palette = colores, domain = c_zona)
 
 # Mapa leaflet básico con capas de zonas y recursos patrimoniales 
 leaflet() %>%
@@ -121,8 +128,8 @@ leaflet() %>%
   
   addPolygons(
     data = zonas,
-    color = "Blue",
-    smoothFactor = 0.5,
+    color = ~paleta(id_zona),
+    smoothFactor = 0.7,
     popup = ~nombre,
     label= ~id_zona,
     stroke = TRUE,
